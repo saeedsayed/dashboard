@@ -47,10 +47,6 @@ img {
   display: block;
 }
 
-body > div:not(#root):not(.e-tooltip-wrap) {
-  display: none !important;
-}
-
 a.active {
   background-color: var(--hover-color);
 }

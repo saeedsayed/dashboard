@@ -2,35 +2,30 @@ import { LineChart } from "@mui/x-charts";
 import React from "react";
 
 import { lineChartData, lineChartYKey } from "../../data/dummy";
-import { PageHeader } from "../../components";
 
-
-const Area = () => {
+const LineChartComponent = () => {
   return (
     <>
-      <PageHeader title={"AreaChart"} subTitle={"simple Area chart"} />
       <div className="w-full overflow-auto h-full [&_tspan]:fill-primary-text [&_line]:!stroke-primary [&>*]:m-auto">
         <LineChart
+          xAxis={[
+            {
+              id: "years",
+              dataKey: "year",
+              scaleType: "point",
+            },
+          ]}
           series={Object.keys(lineChartYKey).map((key) => ({
             dataKey: key,
-            showMark: false,
-            area: true,
             label: key,
             color: lineChartYKey[key],
-            stack:'total',
           }))}
-          xAxis={[{ dataKey: "year",scaleType:'point' }]}
           dataset={lineChartData}
           width={1100}
-          sx={{
-            ".MuiLineElement-root": {
-              display: "none",
-            },
-          }}
         />
       </div>
     </>
   );
 };
 
-export default Area;
+export default LineChartComponent;

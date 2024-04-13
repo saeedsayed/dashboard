@@ -9,7 +9,7 @@ const TextEditor = () => {
   const editorRef = useRef(null);
 
   return (
-    <div className="flex flex-col flex-1">
+    <div className="flex h-full flex-col flex-1">
       <PageHeader title={"text editor"} subTitle={"text editor"} />
       <ReactQuill
         ref={editorRef}

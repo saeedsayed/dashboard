@@ -29,7 +29,7 @@ const App = () => {
         <Sidebar />
         <div className="flex-1 p-4 w-96 flex flex-col">
           <Navbar />
-          {/* <div className="overflow-auto h-[calc(100vh-48px)]"> */}
+          <div className="overflow-auto h-[calc(100vh-48px)] -me-4 pr-4">
           <Routes>
             {/* Dashboard */}
             <Route path="/" element={<Ecommerce />} />
@@ -53,7 +53,7 @@ const App = () => {
             <Route path="/pyramid" element={<Pyramid />} />
             <Route path="/stacked" element={<Stacked />} />
           </Routes>
-          {/* </div> */}
+          </div>
         </div>
       </div>
     </>

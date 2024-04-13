@@ -4,7 +4,7 @@ import { Gauge } from "@mui/x-charts";
 
 const Card = ({ icon, title, subTitle, increase }) => {
   return (
-    <div className="flex justify-between items-center flex-1 self-stretch min-w-56 gap-8 p-6 bg-section-bg capitalize">
+    <div className="flex justify-between items-center flex-1 min-w-48 md:w-[calc((100%-3rem)/4)] sm:w-[calc((100%-1rem)/2)] w-full  self-stretch   p-6 bg-section-bg capitalize">
       <div>
         <div className="text-secondary text-3xl">{icon}</div>
         <h2 className="text-primary-text text-2xl font-bold">
@@ -12,10 +12,10 @@ const Card = ({ icon, title, subTitle, increase }) => {
         </h2>
         <h5 className="text-secondary text-lg">{subTitle}</h5>
       </div>
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-end">
         <div
           className="[&_.MuiGauge-valueText]:hidden [&_.css-b9rdri-MuiGauge-referenceArc]:fill-secondary
-        [&_.css-p1sr87-MuiGauge-referenceArc]:fill-main-bg"
+        [&_.css-p1sr87-MuiGauge-referenceArc]:fill-main-bg text-end -me-3"
         >
           {" "}
           <Gauge
