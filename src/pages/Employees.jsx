@@ -1,20 +1,17 @@
-import * as React from "react";
-
+// components
 import { PageHeader, Table } from "../components";
+// data
 import { employeesGrid, employeesData } from "../data/dummy";
 
 function Employees() {
-  let employeeId = 1;
   employeesData.forEach((employee) => {
-    employee.id = employeeId;
-    employeeId++;
+    employee.id = crypto.randomUUID().slice(0, 6);
   });
   return (
     <>
       <PageHeader title={"employees"} subTitle={"mange"} />
 
-        <Table row={employeesData} columns={employeesGrid}/>
-
+      <Table row={employeesData} columns={employeesGrid} />
     </>
   );
 }

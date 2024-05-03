@@ -1,5 +1,3 @@
-import React from "react";
-
 const PageHeader = ({ title, subTitle }) => {
   return (
     <div className="mt-9 mb-7">

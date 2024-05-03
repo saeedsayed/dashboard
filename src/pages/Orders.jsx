@@ -1,19 +1,16 @@
-import * as React from "react";
-
+// components
 import { PageHeader, Table } from "../components";
-
+// data
 import { ordersGrid, ordersData } from "../data/dummy";
 
 function Order() {
-  let orderId = 1;
   ordersData.forEach((order) => {
-    order.id = orderId;
-    orderId++;
+    order.id = crypto.randomUUID().slice(0, 6);
   });
   return (
     <>
       <PageHeader title={"order"} subTitle={"manage"} />
-        <Table row={ordersData} columns={ordersGrid} /> 
+      <Table row={ordersData} columns={ordersGrid} />
     </>
   );
 }

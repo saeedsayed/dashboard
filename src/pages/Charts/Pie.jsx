@@ -1,4 +1,4 @@
-import React from "react";
+// components
 import { PageHeader } from "../../components";
 import { PieChart } from "@mui/x-charts";
 
@@ -6,8 +6,10 @@ const Pie = () => {
   return (
     <>
       <PageHeader title={"pie chart"} subTitle={"simple pie chart"} />
-      <div className=" overflow-auto h-full [&_tspan]:fill-primary-text [&>*]:m-auto [&_.MuiPieArcLabel-root]:!fill-white
-      [&_.MuiPieArcLabel-root]:!text-2xl">
+      <div
+        className=" overflow-auto h-full [&_tspan]:fill-primary-text [&>*]:m-auto [&_.MuiPieArcLabel-root]:!fill-white
+      [&_.MuiPieArcLabel-root]:!text-2xl"
+      >
         <PieChart
           series={[
             {
@@ -20,8 +22,14 @@ const Pie = () => {
               innerRadius: 100,
               paddingAngle: 1,
               arcLabel: (item) => item.value,
-              highlightScope:{faded:"global", highlighted:'item'},
-              faded:{color: "black", additionalRadius: -20,cornerRadius:10, innerRadius:150,paddingAngle:4 }
+              highlightScope: { faded: "global", highlighted: "item" },
+              faded: {
+                color: "black",
+                additionalRadius: -20,
+                cornerRadius: 10,
+                innerRadius: 150,
+                paddingAngle: 4,
+              },
             },
           ]}
           width={1050}

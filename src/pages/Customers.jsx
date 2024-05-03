@@ -1,13 +1,11 @@
-import * as React from "react";
-
+// components
 import { PageHeader, Table } from "../components";
+// data
 import { customersData, customersGrid } from "../data/dummy";
 
 function Customers() {
-  let customerId = 1;
   customersData.forEach((employee) => {
-    employee.id = customerId;
-    customerId++;
+    employee.id = crypto.randomUUID().slice(0, 6);
   });
   return (
     <>

@@ -13,6 +13,9 @@ export default {
         'primary-text': 'var(--primary-text-color)',
         'sub-text': 'var(--sub-text-color)',
         border: 'var(--border-color)'
+      },
+      borderRadius: {
+        radius: 'var(--radius)'
       }
     },
   },

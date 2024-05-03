@@ -1,9 +1,8 @@
+// components
 import { LineChart } from "@mui/x-charts";
-import React from "react";
-
-import { lineChartData, lineChartYKey } from "../../data/dummy";
 import { PageHeader } from "../../components";
-
+// data
+import { lineChartData, lineChartYKey } from "../../data/dummy";
 
 const Area = () => {
   return (
@@ -17,9 +16,9 @@ const Area = () => {
             area: true,
             label: key,
             color: lineChartYKey[key],
-            stack:'total',
+            stack: "total",
           }))}
-          xAxis={[{ dataKey: "year",scaleType:'point' }]}
+          xAxis={[{ dataKey: "year", scaleType: "point" }]}
           dataset={lineChartData}
           width={1100}
           sx={{

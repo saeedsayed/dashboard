@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+// hooks
+import { useEffect, useState } from "react";
 
 const CountUp = ({
   endValue = 120,
@@ -22,11 +23,9 @@ const CountUp = ({
     }, 16.66);
     return () => clearInterval(intervalId);
   }, [endValue, duration]);
-  return (isDecimal
-    ? count.toFixed(decimalCount)
-    : Math.trunc(count)
-        .toString())
-        .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return (
+    isDecimal ? count.toFixed(decimalCount) : Math.trunc(count).toString()
+  ).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
 export default CountUp;

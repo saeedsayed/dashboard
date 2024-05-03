@@ -3,14 +3,15 @@
 @tailwind utilities;
 
 :root {
-  --primary-color: #4194e2;
+  --primary-color: #277cfd;
   --secondary-color: #7f27ff;
   --hover-color: #32383d38;
-  --main-bg-color: #dce8ee;
+  --main-bg-color: #f4f5f1;
   --section-bg-color: #fff;
   --primary-text-color: #000;
   --sub-text-color: #777;
   --border-color: #777;
+  --radius: 9px;
 }
 
 .dark {

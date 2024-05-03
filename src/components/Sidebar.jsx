@@ -1,11 +1,12 @@
 import React from "react";
 // hooks
 import { useContextProvider } from "../context/ContextProvider";
-import { NavLink } from "react-router-dom";
 // data
 import { links } from "../data/dummy";
 // icons
 import { FaArrowLeft } from "react-icons/fa";
+// components
+import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   const { openSidebar, handelSidebar } = useContextProvider();
@@ -32,7 +33,7 @@ const Sidebar = () => {
                   {link.icon}
                   <span
                     className={`overflow-hidden transition-all duration-500  ${
-                      openSidebar ? "ms-3 w-56" : " w-0"
+                      openSidebar ? "ms-3 w-32" : " w-0"
                     }`}
                   >
                     {link.name}

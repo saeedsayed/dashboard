@@ -1,24 +1,32 @@
-import React, { useRef } from "react";
+// hooks
+import { useRef } from "react";
+import { useContextProvider } from "../context/ContextProvider";
+// components
 import { PageHeader } from "../components/index";
 import ReactQuill from "react-quill";
+import { CardBody } from "../components/index";
+// styles
 import "react-quill/dist/quill.snow.css";
-import { useContextProvider } from "../context/ContextProvider";
 
 const TextEditor = () => {
   const { textEditorContent, setTextEditorContent } = useContextProvider();
   const editorRef = useRef(null);
 
   return (
-    <div className="flex h-full flex-col flex-1">
+    <div className="flex h-full flex-col">
       <PageHeader title={"text editor"} subTitle={"text editor"} />
-      <ReactQuill
-        ref={editorRef}
-        theme="snow"
-        value={textEditorContent}
-        onChange={() => setTextEditorContent(editorRef.current.value)}
-        placeholder="start typing..."
-        className="bg-section-bg flex-1 overflow-auto p-4 max-h-[460px]"
-      />
+      <div className="h-[calc(100vh-196px)]">
+        <CardBody>
+          <ReactQuill
+            ref={editorRef}
+            theme="snow"
+            value={textEditorContent}
+            onChange={() => setTextEditorContent(editorRef.current.value)}
+            placeholder="start typing..."
+            className="overflow-auto h-full"
+          />
+        </CardBody>
+      </div>
     </div>
   );
 };
