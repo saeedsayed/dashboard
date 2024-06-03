@@ -21,7 +21,7 @@ const Pie = () => {
               ],
               innerRadius: 100,
               paddingAngle: 1,
-              arcLabel: (item) => item.value,
+              arcLabel: (item) => item.value.toString(),
               highlightScope: { faded: "global", highlighted: "item" },
               faded: {
                 color: "black",

@@ -29,10 +29,10 @@ const Snackbar = () => {
       <AnimatePresence>
         {snackbar.isOpen && (
           <motion.div
-            initial={{ y: 100, x: "-50%", opacity: 0 }}
+            initial={{ y: -100, x: "-50%", opacity: 0 }}
             animate={{ y: 0, x: "-50%", opacity: 1 }}
-            exit={{ y: 100, opacity: 0 }}
-            className={`flex items-center absolute bottom-5 ${
+            exit={{ y: -100, opacity: 0 }}
+            className={`flex items-center absolute top-5 ${
               snackbar.type == "success"
                 ? "bg-green-600"
                 : snackbar.type == "warning"
