@@ -5,31 +5,11 @@ import {
   AiOutlineBarChart,
   AiOutlineStock,
 } from "react-icons/ai";
-import {
-  FiShoppingBag,
-  FiEdit,
-  FiPieChart,
-  FiBarChart,
-  FiCreditCard,
-  FiStar,
-  FiShoppingCart,
-} from "react-icons/fi";
-import {
-  BsKanban,
-  BsBarChart,
-  BsBoxSeam,
-  BsCurrencyDollar,
-  BsShield,
-  BsChatLeft,
-} from "react-icons/bs";
+import { FiShoppingBag, FiEdit, FiPieChart } from "react-icons/fi";
 import { LuListTodo } from "react-icons/lu";
 
 import { IoMdContacts } from "react-icons/io";
-import { RiContactsLine, RiStockLine } from "react-icons/ri";
-import { MdOutlineSupervisorAccount } from "react-icons/md";
-import { HiOutlineRefresh } from "react-icons/hi";
-import { TiTick } from "react-icons/ti";
-import { GiLouvrePyramid } from "react-icons/gi";
+import { RiContactsLine } from "react-icons/ri";
 import { GrLocation } from "react-icons/gr";
 import avatar from "../assets/images/avatar.jpg";
 import avatar2 from "../assets/images/avatar2.jpg";
@@ -42,7 +22,6 @@ import product4 from "../assets/images/product4.jpg";
 import product5 from "../assets/images/product5.jpg";
 import product6 from "../assets/images/product6.jpg";
 import product7 from "../assets/images/product7.jpg";
-import product8 from "../assets/images/product8.jpg";
 
 export const GridOrderImage = (props) => (
   <div className="py-1 h-full">

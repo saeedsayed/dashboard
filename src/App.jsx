@@ -20,17 +20,28 @@ import {
   Line,
   Orders,
   Pie,
+  Login,
+  Register,
+  ResetPassword,
 } from "./pages/index";
+import ProtectedRoute from "./ProtectedRoute";
+import Layout from "./Layout";
 
 const App = () => {
   return (
     <>
       <div className="flex relative h-screen w-screen overflow-hidden bg-main-bg text-primary-text">
-        <Sidebar />
+        {/* <Sidebar />
         <div className="flex-1 p-4 w-96 flex flex-col">
           <Navbar />
-          <div className="overflow-auto h-[calc(100vh-48px)] -me-4 pr-4">
-            <Routes>
+          <div className="overflow-auto h-[calc(100vh-48px)] -me-4 pr-4"> */}
+        <Routes>
+          {/* Login&Register */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route element={<ProtectedRoute />}>
+            <Route element={<Layout />}>
               {/* Dashboard */}
               <Route path="/" element={<Ecommerce />} />
               <Route path="/ecommerce" element={<Ecommerce />} />
@@ -47,9 +58,11 @@ const App = () => {
               <Route path="/area" element={<Area />} />
               <Route path="/bar" element={<Bar />} />
               <Route path="/pie" element={<Pie />} />
-            </Routes>
-          </div>
-        </div>
+            </Route>
+          </Route>
+        </Routes>
+        {/* </div>
+        </div> */}
         {/* todo form modal */}
         <TodoForm />
         {/* calendar form modal */}
