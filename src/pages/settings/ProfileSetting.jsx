@@ -103,8 +103,7 @@ const ProfileSetting = () => {
         lastName !== userData.last ||
         phoneNumber !== userData.phoneNumber
       ) {
-        const fullName = firstName + " " + lastName;
-
+        const fullName = firstName.trim() + " " + lastName.trim();
         updateProfile(adminUser, {
           displayName: fullName,
           phoneNumber: phoneNumber,

@@ -95,7 +95,7 @@ const Navbar = () => {
               className="w-8 h-8 rounded-full"
             />
             <h6 className="text-xs flex items-center gap-1 text-primary-text ">
-              Hi, {adminUser?.displayName.match(/^(\w+)\s+(\w+)$/)[1]}
+              Hi, {adminUser?.displayName.split(" ")[0]}
               <IoIosArrowDown
                 className={`text-lg transition-all duration-300 ${
                   openNavBox.profile ? "rotate-180" : "rotate-0"

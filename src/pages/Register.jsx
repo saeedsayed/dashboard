@@ -42,7 +42,7 @@ const Register = () => {
   });
 
   const submitRegister = (data) => {
-    const displayName = data.firstName + " " + data.lastName;
+    const displayName = data.firstName.trim() + " " + data.lastName.trim();
     handleRegister(data.email, data.password, displayName);
   };
 
@@ -74,7 +74,10 @@ const Register = () => {
         <div className="flex justify-end">
           <div className="bg-main-bg min-h-screen w-full md:w-1/2 flex justify-center items-center px-4">
             <div>
-              <form onSubmit={handleSubmit(submitRegister)} className="max-w-[450px]">
+              <form
+                onSubmit={handleSubmit(submitRegister)}
+                className="max-w-[450px]"
+              >
                 <div className="pb-3">
                   <span className="text-sm text-primary-text">
                     Welcome to our dashboard{" "}
@@ -130,10 +133,10 @@ const Register = () => {
                 />
                 <div className="">
                   <Button
-                  variant={'primary'}
-                  className={'w-full my-4'}
-                  //   className="mt-4 mb-6 w-full bg-secondary hover:bg-primary
-                  // py-2 rounded-md transition duration-100 text-gray-50"
+                    variant={"primary"}
+                    className={"w-full my-4"}
+                    //   className="mt-4 mb-6 w-full bg-secondary hover:bg-primary
+                    // py-2 rounded-md transition duration-100 text-gray-50"
                   >
                     Create Account
                   </Button>
@@ -151,7 +154,6 @@ const Register = () => {
                   to={"/login"}
                   className="cursor-pointer text-blue-600 hover:text-blue-400"
                 >
-                  
                   {" "}
                   Login
                 </Link>

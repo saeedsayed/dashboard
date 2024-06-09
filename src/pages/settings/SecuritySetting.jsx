@@ -58,18 +58,14 @@ const SecuritySetting = () => {
     try {
       const storageRef = ref(storage, `userAvatars/${email} avatar`);
       await deleteUser(adminUser);
-      console.log("account has ben deleted");
       await deleteDoc(useUsersDocRef(email));
-      console.log("doc has ben deleted");
       await deleteObject(storageRef);
-      console.log("storage has ben deleted");
       setSnackbar({
         isOpen: true,
         message: "Account deleted successfully",
         type: "success",
       });
     } catch (err) {
-      console.log(err.message);
       setSnackbar({
         isOpen: true,
         message: "Account not deleted. Please log in again and try again",
@@ -170,7 +166,7 @@ const SecuritySetting = () => {
       {/* Modal */}
       {/* change password modal */}
       <CenterModal
-        isOpen={modalIsOpen.changePassword}
+        isOpen={!!modalIsOpen.changePassword}
         handleClose={(_) =>
           setModalIsOpen((p) => ({ ...p, changePassword: false }))
         }

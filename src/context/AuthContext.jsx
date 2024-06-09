@@ -84,7 +84,6 @@ export const AuthProvider = ({ children }) => {
         socialLinks: SOCIAL_LINKS_LIST,
       });
     } catch (err) {
-      console.log("error", err.message);
       setAuthError((p) => ({ ...p, registerErr: true }));
     } finally {
       setAuthLoading(false);
