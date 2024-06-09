@@ -63,6 +63,9 @@ const ChangeUserAvatarModal = ({ isOpen, handleClose, isUploadingAvatar }) => {
           className="w-80 h-80 rounded-full block mx-auto mb-2 border"
         />
       )}
+      <p className="text-primary-text mb-3">
+        JPG or PNG or JPEG no larger then 2MB
+      </p>
       <FileUploader
         handleChange={(e) => setNewAvatar(e)}
         name="upload file"

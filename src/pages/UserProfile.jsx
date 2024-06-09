@@ -81,10 +81,10 @@ const UserProfile = () => {
     <>
       <div className="flex gap-4 flex-wrap items-start mt-8">
         {/* left col  */}
-        <div className="text-center flex flex-col gap-4">
+        <div className="text-center flex-1 min-w-80 md:flex-none  flex flex-col gap-4">
           {/* left col (row one) */}
           <CardBody>
-            <div className="relative rounded-full bg-main-bg overflow-hidden">
+            <div className="relative max-w-80 mx-auto rounded-full bg-main-bg overflow-hidden">
               <img
                 src={userData.avatar}
                 className="md:w-80 aspect-square rounded-full"
@@ -157,7 +157,7 @@ const UserProfile = () => {
           </CardBody>
         </div>
         {/* right col */}
-        <div className="flex-1">
+        <div className="flex-1 min-w-80">
           <CardBody>
             <h3 className="bg-main-bg px-4 py-2 md:text-3xl text-xl mb-2 font-bold">
               Base information
