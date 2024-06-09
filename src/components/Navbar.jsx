@@ -1,51 +1,43 @@
-import React from "react";
 // hooks
+import { useState } from "react";
 import { useContextProvider } from "../context/ContextProvider";
+import { useAuth } from "../context/AuthContext";
 // components
 import { NavButton } from "./index";
-import { IoIosLogOut } from "react-icons/io";
-// assets
-import avatar from "../assets/images/avatar.jpg";
+
 // icons
 import { FaRegSun, FaRegMoon } from "react-icons/fa";
 import { IoCartOutline, IoSearchOutline } from "react-icons/io5";
-import {
-  IoMdNotificationsOutline,
-  IoIosArrowDown,
-  IoIosArrowUp,
-} from "react-icons/io";
+import { IoMdNotificationsOutline, IoIosArrowDown } from "react-icons/io";
 import { MdOutlineChatBubbleOutline, MdFullscreen } from "react-icons/md";
 import { PiSidebarFill } from "react-icons/pi";
-import { useAuth } from "../context/AuthContext";
-import Modal from "react-modal";
-import { IoPerson } from "react-icons/io5";
-import { IoSettingsSharp } from "react-icons/io5";
-
+import { LogoutModal, NavbarProfileModal } from "./modals";
 
 const Navbar = () => {
+  const [isOpenLogoutModal, setIsOpenLogoutModal] = useState(false);
   const {
     darkThem,
-    handelThem,
-    handelSidebar,
+    handleThem,
+    handleSidebar,
     openSidebar,
-    handelNavBox,
+    handleNavBox,
     openNavBox,
     isFullScreen,
     handleFullscreen,
   } = useContextProvider();
-  const { adminUser, handleLogout } = useAuth();
+  const { adminUser } = useAuth();
   return (
     <>
       <div className="flex relative bg-main-bg z-10 pb-1 justify-between items-center text-primary">
         <NavButton
           content={<PiSidebarFill />}
-          tooltip={`${openSidebar ? "close" : "open"} sidebar`}
-          handelClick={handelSidebar}
+          title={`${openSidebar ? "close" : "open"} sidebar`}
+          onClick={handleSidebar}
           customStyle={`text-2xl`}
           active={openSidebar}
         />
         <div className="flex gap-2 sm:gap-4 text-xl">
-          <div className="absolute inset-0 -z-10 bg-main-bg" />
+          {/* <div className="absolute inset-0 -z-10 bg-main-bg" /> */}
           <input
             type="text"
             placeholder="search about something"
@@ -58,111 +50,74 @@ const Navbar = () => {
           />
           <NavButton
             content={<IoSearchOutline />}
-            tooltip={`${openNavBox.search ? "close" : "open"} search`}
-            handelClick={() => handelNavBox("search")}
+            title={`${openNavBox.search ? "close" : "open"} search`}
+            onClick={() => handleNavBox("search")}
             active={openNavBox.search}
           />
           <NavButton
             content={<MdFullscreen />}
-            tooltip={`${isFullScreen ? "close" : "show in"}  fullscreen`}
-            handelClick={handleFullscreen}
+            title={`${isFullScreen ? "close" : "show in"}  fullscreen`}
+            onClick={handleFullscreen}
             active={isFullScreen}
           />
           <NavButton
             content={<IoCartOutline />}
-            tooltip={`${openNavBox.cart ? "close" : "open"}  cart`}
-            handelClick={() => handelNavBox("cart")}
+            title={`${openNavBox.cart ? "close" : "open"}  cart`}
+            onClick={() => handleNavBox("cart")}
           />
           <NavButton
             content={<MdOutlineChatBubbleOutline />}
-            tooltip={`${openNavBox.chat ? "close" : "open"}  chat`}
-            handelClick={() => handelNavBox("chat")}
+            title={`${openNavBox.chat ? "close" : "open"}  chat`}
+            onClick={() => handleNavBox("chat")}
             notification
           />
           <NavButton
             content={<IoMdNotificationsOutline />}
-            tooltip={`${
+            title={`${
               openNavBox.notification ? "close" : "open"
             }  notification`}
-            handelClick={() => handelNavBox("notification")}
+            onClick={() => handleNavBox("notification")}
             notification
           />
           <NavButton
             content={darkThem ? <FaRegMoon /> : <FaRegSun />}
-            tooltip={`change to ${darkThem ? "light" : "dark"} them`}
-            handelClick={handelThem}
+            title={`change to ${darkThem ? "light" : "dark"} them`}
+            onClick={handleThem}
           />
           <div
             className="cursor-pointer relative flex items-center gap-2 select-none"
-            onClick={() => handelNavBox("profile")}
+            onClick={() => handleNavBox("profile")}
           >
             <img
               draggable={false}
-              src={adminUser?.photoURL || avatar}
+              src={adminUser?.photoURL}
               alt=""
               className="w-8 h-8 rounded-full"
             />
             <h6 className="text-xs flex items-center gap-1 text-primary-text ">
-              Hi, {adminUser?.displayName}
-              {openNavBox.profile ? <IoIosArrowUp /> : <IoIosArrowDown />}
+              Hi, {adminUser?.displayName.match(/^(\w+)\s+(\w+)$/)[1]}
+              <IoIosArrowDown
+                className={`text-lg transition-all duration-300 ${
+                  openNavBox.profile ? "rotate-180" : "rotate-0"
+                }`}
+              />
             </h6>
           </div>
         </div>
       </div>
 
       {/* modal */}
-      <ProfileModal
-        isOpen={openNavBox.profile}
+      <NavbarProfileModal
+        handleLogoutModal={(_) => setIsOpenLogoutModal(true)}
+      />
+      <LogoutModal
+        isOpen={isOpenLogoutModal}
         handleClose={(_) => {
-          handelNavBox("profile");
+          setIsOpenLogoutModal(false);
         }}
-        handleLogout={handleLogout}
       />
     </>
   );
 };
 
 export default Navbar;
-
-const ProfileModal = ({ isOpen, handleClose, handleLogout }) => (
-  <Modal
-    isOpen={isOpen}
-    onRequestClose={handleClose}
-    style={{
-      content: {
-        top: "55px",
-        right: "20px",
-      },
-      overlay: {
-        backgroundColor: "transparent",
-        zIndex: 1000,
-      },
-    }}
-    className={"absolute w-60 px-5 py-3 bg-section-bg rounded-lg shadow border"}
-  >
-    <ul className="space-y-3 dark:text-white" onClick={handleClose}>
-      <li className="font-medium">
-        <button className="flex w-full items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-indigo-700">
-          <IoPerson className="w-6 h-6 mr-3" />
-          Account
-        </button>
-      </li>
-      <li className="font-medium">
-        <button className="flex w-full items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-indigo-700">
-          <IoSettingsSharp className="w-6 h-6 mr-3" />
-          Setting
-        </button>
-      </li>
-      <hr className="dark:border-gray-700" />
-      <li className="font-medium">
-        <button
-          onClick={handleLogout}
-          className="flex w-full items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-red-600"
-        >
-          <IoIosLogOut className="mr-3 text-red-600 w-6 h-6" />
-          Logout
-        </button>
-      </li>
-    </ul>
-  </Modal>
-);

@@ -1,11 +1,4 @@
-const NavButton = ({
-  content,
-  notification,
-  tooltip,
-  handelClick,
-  customStyle,
-  active,
-}) => {
+const NavButton = ({ content, notification, customStyle, active, ...rest }) => {
   // notification point 👇
   const ntf =
     notification &&
@@ -17,8 +10,7 @@ const NavButton = ({
       className={`hover:bg-hover relative w-8 h-8 rounded-lg flex justify-center items-center ${ntf} ${
         active && "text-secondary bg-hover"
       } ${customStyle}`}
-      title={tooltip}
-      onClick={handelClick}
+      {...rest}
     >
       {content}
     </button>

@@ -36,7 +36,7 @@ const validationSchema = yup.object().shape({
 
 const ResetPassword = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const { authLoading, adminUser, handleResetPassword } = useAuth();
+  const {adminUser, handleResetPassword } = useAuth();
 
   const navigate = useNavigate();
 
@@ -59,9 +59,7 @@ const ResetPassword = () => {
     }
   }, [adminUser]);
 
-  if (authLoading) {
-    return <FullScreenLoading />;
-  }
+
   return (
     <>
       <div
@@ -74,9 +72,9 @@ const ResetPassword = () => {
         <div className="flex justify-end">
           <div className="bg-main-bg min-h-screen w-full md:w-1/2 flex justify-center items-center px-4">
             <div>
-              <form onSubmit={handleSubmit(submitRegister)}>
+              <form onSubmit={handleSubmit(submitRegister)} className="max-w-[450px]">
                 <div className="pb-3 md:min-w-[400px] min-w-[300px]">
-                  <span className="text-sm text-white">
+                  <span className="text-sm text-primary-text">
                     Welcome to our dashboard{" "}
                     <span className="text-2xl">👋</span>
                   </span>

@@ -10,43 +10,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import { CardBody, PageHeader } from "../components";
 // data
 import { CALENDER_EVENTS } from "../data/dummy";
-
-function Sidebar({ weekendsVisible, handleWeekendsToggle, currentEvents }) {
-  return (
-    <div className="min-w-40 flex-1 bg-main-bg h-full p-4  overflow-auto">
-      <label className="flex gap-2 items-center w-fit cursor-pointer">
-        <input
-          type="checkbox"
-          checked={weekendsVisible}
-          onChange={handleWeekendsToggle}
-        ></input>
-        show weekends
-      </label>
-      <h2>
-        All Events{" "}
-        <span className="font-bold text-secondary">
-          {" "}
-          ( {currentEvents.length} )
-        </span>
-      </h2>
-      <ul>
-        {currentEvents.map((event) => (
-          <li key={event.id}>
-            <b className="mr-1 text-secondary">
-              {formatDate(event.start, {
-                year: "numeric",
-                month: "short",
-                day: "numeric",
-              })}
-            </b>
-            <span>{event.title}</span>
-            <hr />
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
+import { CalendarFormModal } from "../components/modals";
 
 export default function calendar() {
   const { setModalIsOpen, setSnackbar } = useContextProvider();
@@ -89,7 +53,7 @@ export default function calendar() {
     setSnackbar({
       isOpen: true,
       message: "The event has been removed ✔",
-      type: "warning",
+      type: "success",
     });
   };
 
@@ -104,7 +68,7 @@ export default function calendar() {
               handleWeekendsToggle={handleWeekendsToggle}
               currentEvents={currentEvents}
             />
-            <div className="[&_.fc_.fc-toolbar-title]:text-secondary  grow min-w-[200px] h-full pr-4 -mr-4 overflow-auto">
+            <div className="[&_.fc_.fc-toolbar-title]:text-primary  grow min-w-[200px] h-full pr-4 -mr-4 overflow-auto">
               <FullCalendar
                 plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
                 headerToolbar={{
@@ -133,6 +97,7 @@ export default function calendar() {
           </div>
         </CardBody>
       </div>
+      <CalendarFormModal />
     </>
   );
 }
@@ -143,5 +108,42 @@ function renderEventContent(eventInfo) {
       <span>{eventInfo.timeText}</span>
       <span>{eventInfo.event.title}</span>
     </>
+  );
+}
+
+function Sidebar({ weekendsVisible, handleWeekendsToggle, currentEvents }) {
+  return (
+    <div className="min-w-40 flex-1 bg-main-bg h-full p-4  overflow-auto">
+      <label className="flex gap-2 items-center w-fit cursor-pointer">
+        <input
+          type="checkbox"
+          checked={weekendsVisible}
+          onChange={handleWeekendsToggle}
+        ></input>
+        show weekends
+      </label>
+      <h2>
+        All Events{" "}
+        <span className="font-bold text-secondary">
+          {" "}
+          ( {currentEvents.length} )
+        </span>
+      </h2>
+      <ul>
+        {currentEvents.map((event) => (
+          <li key={event.id}>
+            <b className="mr-1 text-secondary">
+              {formatDate(event.start, {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+              })}
+            </b>
+            <span>{event.title}</span>
+            <hr />
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }

@@ -8,19 +8,8 @@ import Lottie from "lottie-react";
 // icons
 import { IoMdAdd } from "react-icons/io";
 import ghost from "../assets/animations/ghost.json";
-
-const TodoCard = ({ children, title }) => (
-  <div className="flex-1">
-    <CardBody>
-      <h2 className="text-center text-3xl font-bold text-secondary mb-3 w-full truncate">
-        {title}
-      </h2>
-      <div className="h-[calc(100vh-298px)]  overflow-x-hidden overflow-auto -me-5 pe-5">
-        <AnimatePresence>{children}</AnimatePresence>
-      </div>
-    </CardBody>
-  </div>
-);
+import { TodoAddModal } from "../components/modals";
+import { Button } from "../components";
 
 const Todo = () => {
   const { setModalIsOpen, todoData, setTodoData } = useContextProvider();
@@ -58,12 +47,13 @@ const Todo = () => {
     <>
       <div className="flex justify-between items-center">
         <PageHeader title={"TODO"} subTitle={"mange your task"} />
-        <button
-          className="flex items-center gap-1 hover:bg-primary text-white bg-secondary rounded-md px-3 py-2"
+        <Button
+          variant={"primary"}
+          // className="flex items-center gap-1 hover:bg-primary text-white bg-secondary rounded-md px-3 py-2"
           onClick={(_) => setModalIsOpen((p) => ({ ...p, todo: true }))}
         >
           <IoMdAdd /> Add New Task
-        </button>
+        </Button>
       </div>
       <div className="w-full gap-6 hidden md:flex">
         <TodoCard title={"in progress"}>
@@ -161,8 +151,22 @@ const Todo = () => {
             ))}
         </TodoCard>
       </div>
+      <TodoAddModal />
     </>
   );
 };
 
 export default Todo;
+
+const TodoCard = ({ children, title }) => (
+  <div className="flex-1">
+    <CardBody>
+      <h2 className="text-center text-3xl font-bold text-primary mb-3 w-full truncate">
+        {title}
+      </h2>
+      <div className="h-[calc(100vh-298px)]  overflow-x-hidden overflow-auto -me-5 pe-5">
+        <AnimatePresence>{children}</AnimatePresence>
+      </div>
+    </CardBody>
+  </div>
+);

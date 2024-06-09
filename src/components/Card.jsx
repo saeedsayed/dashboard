@@ -12,7 +12,7 @@ const Card = ({ icon, title, subTitle, increase }) => {
             capitalize"
         >
           <div>
-            <div className="text-secondary text-3xl">{icon}</div>
+            <div className="text-primary text-3xl">{icon}</div>
             <h2 className="text-primary-text text-2xl font-bold">
               {<CountUp endValue={title} duration={0.8} />}
             </h2>
@@ -20,8 +20,8 @@ const Card = ({ icon, title, subTitle, increase }) => {
           </div>
           <div className="flex flex-col items-end">
             <div
-              className="[&_.MuiGauge-valueText]:hidden [&_.css-b9rdri-MuiGauge-referenceArc]:fill-secondary
-        [&_.css-p1sr87-MuiGauge-referenceArc]:fill-main-bg text-end -me-3"
+              className="[&_.MuiGauge-valueText]:hidden [&_.css-b9rdri-MuiGauge-referenceArc]:fill-primary
+        [&_.css-p1sr87-MuiGauge-referenceArc]:fill-secondary text-end -me-3"
             >
               {" "}
               <Gauge

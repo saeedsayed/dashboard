@@ -21,10 +21,9 @@ const TodoItem = ({
       <div>{Title}</div>
       <div className="flex gap-3">
         <button
-          className="text-secondary"
           onClick={(_) => handleCompleteTask(Id)}
         >
-          {isDone ? <FaCheck /> : <MdOutlineDoneOutline />}
+          {isDone ? <FaCheck className="text-green-400"/> : <MdOutlineDoneOutline className="text-secondary"/>}
         </button>
         {!isDone && (
           <button

@@ -1,7 +1,7 @@
 // data
 import { TransactionsList } from "../data/dummy";
 // components
-import { Card, CountUp, LineChartComponent, PageHeader } from "../components";
+import { Button, Card, CountUp, LineChartComponent, PageHeader } from "../components";
 // icons
 import { MdOutlineMailOutline } from "react-icons/md";
 import { IoPersonAddOutline } from "react-icons/io5";
@@ -44,9 +44,12 @@ const Ecommerce = () => {
           title={"Dashboard"}
           subTitle={"Welcome to your dashboard"}
         />
-        <button className="flex items-center gap-1 hover:bg-primary text-white bg-secondary rounded-md px-3 py-2">
+        <Button 
+        // className="flex items-center gap-1 hover:bg-primary text-white bg-secondary rounded-md px-3 py-2"
+        variant={'primary'}
+        >
           <MdOutlineDownload /> download reports
-        </button>
+        </Button>
       </div>
       {/* --------- row 1 ---------- */}
       <div className="flex justify-stretch gap-4 flex-wrap">

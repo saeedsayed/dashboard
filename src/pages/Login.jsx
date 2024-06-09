@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { FullScreenLoading, Input } from "../components";
+import { Button, FullScreenLoading, Input } from "../components";
 import { Link } from "react-router-dom";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -20,7 +20,7 @@ const validationSchema = yup.object().shape({
 });
 
 const Login = () => {
-  const { authLoading, adminUser, handleLogin, authError } = useAuth();
+  const { adminUser, handleLogin, authError } = useAuth();
   const { setSnackbar } = useContextProvider();
   const navigate = useNavigate();
   const {
@@ -37,7 +37,7 @@ const Login = () => {
 
   useEffect(() => {
     if (adminUser) {
-      navigate("/");
+      navigate("/user-profile");
     }
   }, [adminUser]);
   useEffect(() => {
@@ -50,9 +50,6 @@ const Login = () => {
     }
   }, [authError.loginErr]);
 
-  if (authLoading) {
-    return <FullScreenLoading />;
-  }
   return (
     <>
       <div
@@ -65,9 +62,9 @@ const Login = () => {
         <div className="flex justify-end">
           <div className="bg-main-bg min-h-screen md:w-1/2 w-full flex justify-center items-center px-4">
             <div>
-              <form onSubmit={handleSubmit(submitLogin)}>
+              <form onSubmit={handleSubmit(submitLogin)} className="max-w-[450px]">
                 <div className="pb-3">
-                  <span className="text-sm text-white">
+                  <span className="text-sm text-primary-text">
                     Welcome to our dashboard{" "}
                     <span className="text-2xl">👋</span>
                   </span>
@@ -92,12 +89,9 @@ const Login = () => {
                   validRef={{ ...register("password") }}
                 />
                 <div className="">
-                  <button
-                    className="mt-4 mb-3 w-full bg-secondary hover:bg-primary
-                  py-2 rounded-md transition duration-100 text-gray-50"
-                  >
+                  <Button variant={"primary"} className={"w-full mt-8"}>
                     Login
-                  </button>
+                  </Button>
                 </div>
               </form>
               {authError.loginErr && (

@@ -1,6 +1,10 @@
 export { default as Login } from "./Login";
 export { default as Register } from "./Register";
 export { default as ResetPassword } from "./ResetPassword";
+export { default as UserProfile } from "./UserProfile";
+export { default as Settings } from "./Settings";
+export { default as ProfileSetting } from "./settings/ProfileSetting";
+export { default as SecuritySetting } from "./settings/SecuritySetting";
 export { default as Ecommerce } from "./Ecommerce";
 export { default as Todo } from "./Todo";
 export { default as Orders } from "./Orders";

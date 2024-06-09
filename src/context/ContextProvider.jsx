@@ -23,6 +23,7 @@ const initialModal = {
 };
 
 const ContextProvider = ({ children }) => {
+  // const [fullScreenLoading, setFullScreenLoading] = useState(true)
   const [darkThem, setDarkThem] = useState(false);
   const [openSidebar, setOpenSideBar] = useState(false);
   const [openNavBox, setOpenNavBox] = useState(initialNavBox);
@@ -36,16 +37,16 @@ const ContextProvider = ({ children }) => {
     type: "",
   });
 
-  const handelSidebar = (_) => {
+  const handleSidebar = (_) => {
     setOpenSideBar(!openSidebar);
   };
 
-  const handelNavBox = (boxName) => {
+  const handleNavBox = (boxName) => {
     setOpenNavBox({ ...initialNavBox, [boxName]: !openNavBox[boxName] });
   };
 
   // dark&light them func
-  const handelThem = () => {
+  const handleThem = () => {
     setDarkThem(!darkThem);
     localStorage.setItem("darkThem", !darkThem);
   };
@@ -91,11 +92,11 @@ const ContextProvider = ({ children }) => {
     <context.Provider
       value={{
         darkThem,
-        handelThem,
+        handleThem,
         openSidebar,
-        handelSidebar,
+        handleSidebar,
         openNavBox,
-        handelNavBox,
+        handleNavBox,
         textEditorContent,
         setTextEditorContent,
         isFullScreen,

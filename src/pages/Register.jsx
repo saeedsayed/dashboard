@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { FullScreenLoading, Input } from "../components";
+import { Button, FullScreenLoading, Input } from "../components";
 import { Link } from "react-router-dom";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -9,7 +9,12 @@ import { useNavigate } from "react-router-dom";
 import { useContextProvider } from "../context/ContextProvider";
 
 const validationSchema = yup.object().shape({
-  userName: yup.string().min(4).max(16).required("Please enter your name"),
+  firstName: yup
+    .string()
+    .min(3)
+    .max(16)
+    .required("Please enter your first name"),
+  lastName: yup.string().min(3).max(16).required("Please enter your last name"),
   email: yup
     .string()
     .email("Please enter a valid email")
@@ -25,7 +30,7 @@ const validationSchema = yup.object().shape({
 });
 
 const Register = () => {
-  const { authLoading, adminUser, handleRegister, authError } = useAuth();
+  const { adminUser, handleRegister, authError } = useAuth();
   const { setSnackbar } = useContextProvider();
   const navigate = useNavigate();
   const {
@@ -37,12 +42,13 @@ const Register = () => {
   });
 
   const submitRegister = (data) => {
-    handleRegister(data.email, data.password, data.userName);
+    const displayName = data.firstName + " " + data.lastName;
+    handleRegister(data.email, data.password, displayName);
   };
 
   useEffect(() => {
     if (adminUser) {
-      navigate("/");
+      navigate("/user-profile");
     }
   }, [adminUser]);
 
@@ -56,9 +62,6 @@ const Register = () => {
     }
   }, [authError.registerErr]);
 
-  if (authLoading) {
-    return <FullScreenLoading />;
-  }
   return (
     <>
       <div
@@ -71,9 +74,9 @@ const Register = () => {
         <div className="flex justify-end">
           <div className="bg-main-bg min-h-screen w-full md:w-1/2 flex justify-center items-center px-4">
             <div>
-              <form onSubmit={handleSubmit(submitRegister)}>
+              <form onSubmit={handleSubmit(submitRegister)} className="max-w-[450px]">
                 <div className="pb-3">
-                  <span className="text-sm text-white">
+                  <span className="text-sm text-primary-text">
                     Welcome to our dashboard{" "}
                     <span className="text-2xl">👋</span>
                   </span>
@@ -81,15 +84,26 @@ const Register = () => {
                     Start now and create your account
                   </h1>
                 </div>
-                <Input
-                  id="userName"
-                  err={errors?.userName}
-                  errMes={errors?.userName?.message}
-                  autoFocus
-                  autoComplete="off"
-                  label={"user name"}
-                  validRef={{ ...register("userName") }}
-                />
+                <div className="flex gap-2 items-end">
+                  <Input
+                    id="firstName"
+                    err={errors?.firstName}
+                    errMes={errors?.firstName?.message}
+                    autoFocus
+                    autoComplete="off"
+                    label={"first name"}
+                    validRef={{ ...register("firstName") }}
+                  />
+                  <Input
+                    id="last name"
+                    err={errors?.lastName}
+                    errMes={errors?.lastName?.message}
+                    autoFocus
+                    autoComplete="off"
+                    label={"last name"}
+                    validRef={{ ...register("lastName") }}
+                  />
+                </div>
                 <Input
                   id="email"
                   err={errors?.email}
@@ -115,12 +129,14 @@ const Register = () => {
                   validRef={{ ...register("confirmPassword") }}
                 />
                 <div className="">
-                  <button
-                    className="mt-4 mb-6 w-full bg-secondary hover:bg-primary
-                  py-2 rounded-md transition duration-100 text-gray-50"
+                  <Button
+                  variant={'primary'}
+                  className={'w-full my-4'}
+                  //   className="mt-4 mb-6 w-full bg-secondary hover:bg-primary
+                  // py-2 rounded-md transition duration-100 text-gray-50"
                   >
                     Create Account
-                  </button>
+                  </Button>
                 </div>
               </form>
               {authError.registerErr && (
@@ -135,6 +151,7 @@ const Register = () => {
                   to={"/login"}
                   className="cursor-pointer text-blue-600 hover:text-blue-400"
                 >
+                  
                   {" "}
                   Login
                 </Link>

@@ -1,12 +1,6 @@
-import { Route, Routes } from "react-router-dom";
 // components
-import {
-  Sidebar,
-  Navbar,
-  TodoForm,
-  Snackbar,
-  CalendarForm,
-} from "./components/index";
+import { Route, Routes } from "react-router-dom";
+import { Snackbar, FullScreenLoading } from "./components/index";
 // pages
 import {
   Area,
@@ -23,18 +17,21 @@ import {
   Login,
   Register,
   ResetPassword,
+  UserProfile,
+  Settings,
+  SecuritySetting,
 } from "./pages/index";
 import ProtectedRoute from "./ProtectedRoute";
 import Layout from "./Layout";
+import { useAuth } from "./context/AuthContext";
+import ProfileSetting from "./pages/settings/ProfileSetting";
 
 const App = () => {
+  const { authLoading } = useAuth();
   return (
     <>
+      {authLoading && <FullScreenLoading />}
       <div className="flex relative h-screen w-screen overflow-hidden bg-main-bg text-primary-text">
-        {/* <Sidebar />
-        <div className="flex-1 p-4 w-96 flex flex-col">
-          <Navbar />
-          <div className="overflow-auto h-[calc(100vh-48px)] -me-4 pr-4"> */}
         <Routes>
           {/* Login&Register */}
           <Route path="/login" element={<Login />} />
@@ -42,6 +39,13 @@ const App = () => {
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route element={<ProtectedRoute />}>
             <Route element={<Layout />}>
+              {/* userProfile */}
+              <Route path="/user-profile" element={<UserProfile />} />
+              {/* settings */}
+              <Route path="/settings" element={<Settings />}>
+                <Route index element={<ProfileSetting />} />
+                <Route path="security" element={<SecuritySetting />} />
+              </Route>
               {/* Dashboard */}
               <Route path="/" element={<Ecommerce />} />
               <Route path="/ecommerce" element={<Ecommerce />} />
@@ -61,12 +65,6 @@ const App = () => {
             </Route>
           </Route>
         </Routes>
-        {/* </div>
-        </div> */}
-        {/* todo form modal */}
-        <TodoForm />
-        {/* calendar form modal */}
-        <CalendarForm />
         {/* snackbar */}
         <Snackbar />
       </div>

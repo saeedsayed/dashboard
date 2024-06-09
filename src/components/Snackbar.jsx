@@ -12,11 +12,12 @@ const Snackbar = () => {
   useEffect(
     //close snackbar 3 seconds after opening it
     (_) => {
+      const closeAfter = snackbar?.closeAfter || 5000;
       let timeoutId;
       if (snackbar.isOpen) {
         timeoutId = setTimeout((_) => {
           setSnackbar((p) => ({ ...p, isOpen: false }));
-        }, 3000);
+        }, closeAfter);
       }
       return (_) => {
         clearTimeout(timeoutId);
