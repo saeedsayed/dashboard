@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { auth, useUsersDocRef } from "../firebase";
+import { auth, storage, useUsersDocRef } from "../firebase";
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
@@ -7,9 +7,9 @@ import {
   signOut,
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
-  sendEmailVerification,
 } from "firebase/auth";
 import { setDoc } from "firebase/firestore";
+import { ref, uploadBytesResumable } from "firebase/storage";
 
 export const SOCIAL_LINKS_LIST = [
   {
@@ -59,6 +59,11 @@ export const AuthProvider = ({ children }) => {
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
       setAuthLoading(true);
+      const storageRef = ref(storage, `userAvatars/${res.user.email} avatar`);
+      await uploadBytesResumable(
+        storageRef,
+        "../assets/images/default-user-avatar.svg"
+      );
       await updateProfile(res.user, {
         displayName,
         photoURL:

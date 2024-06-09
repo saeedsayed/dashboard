@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FullScreenLoading, Input } from "../components";
+import { Button, FullScreenLoading, Input } from "../components";
 import { Link } from "react-router-dom";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -91,12 +91,12 @@ const ResetPassword = () => {
                   validRef={{ ...register("email") }}
                 />
                 <div className="">
-                  <button
-                    className="mt-4 mb-3 w-full bg-secondary hover:bg-primary
-                  py-2 rounded-md transition duration-100 text-gray-50"
+                  <Button
+                  variant={'primary'}
+                  className={'w-full mt-6'}
                   >
                     Send email to reset password
-                  </button>
+                  </Button>
                 </div>
               </form>
               <p className="mt-4">

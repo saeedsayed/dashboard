@@ -86,7 +86,7 @@ const UserProfile = () => {
           <CardBody>
             <div className="relative max-w-80 mx-auto rounded-full bg-main-bg overflow-hidden">
               <img
-                src={userData.avatar}
+                src={userData?.avatar}
                 className="md:w-80 aspect-square rounded-full"
                 alt=""
               />
@@ -99,15 +99,15 @@ const UserProfile = () => {
               </button>
             </div>
             <p className="mt-6 text-4xl text-primary font-bold">
-              {userData.firstName}
+              {userData?.firstName}
             </p>
-            <p className="text-xl">{userData.role}</p>
-            <p className="text-xl">{userData.email}</p>
+            <p className="text-xl">{userData?.role}</p>
+            <p className="text-xl">{userData?.email}</p>
           </CardBody>
           {/* left col (row two) */}
           <CardBody>
             <ul>
-              {userData.socialLinks.map(
+              {userData?.socialLinks.map(
                 ({ socialName, userName, baseUrl }, index) => (
                   <li
                     key={index}
@@ -165,19 +165,19 @@ const UserProfile = () => {
             <ul className="ps-6">
               <PersonalInfoItem
                 infoName={"Full name"}
-                info={userData.firstName + " " + userData.lastName}
+                info={userData?.firstName + " " + userData?.lastName}
               />
-              <PersonalInfoItem infoName={"Email"} info={userData.email} />
+              <PersonalInfoItem infoName={"Email"} info={userData?.email} />
               <PersonalInfoItem
                 infoName={"Phone Number"}
-                info={userData.phoneNumber}
+                info={userData?.phoneNumber}
               />
-              <PersonalInfoItem infoName={"Address"} info={userData.address} />
+              <PersonalInfoItem infoName={"Address"} info={userData?.address} />
               <PersonalInfoItem
                 infoName={"Birthday"}
-                info={userData.birthday}
+                info={userData?.birthday}
               />
-              <PersonalInfoItem infoName={"Role"} info={userData.role} />
+              <PersonalInfoItem infoName={"Role"} info={userData?.role} />
             </ul>
             <div className="border rounded-md overflow-hidden border-border">
               <div className="flex items-center px-4 py-2 justify-between bg-main-bg">
@@ -211,7 +211,7 @@ const UserProfile = () => {
                     title="edit about me"
                     onClick={(_) => {
                       setUpdateAboutMe(true);
-                      setNewAboutMe(userData.aboutMe);
+                      setNewAboutMe(userData?.aboutMe);
                     }}
                   >
                     <MdEdit />
@@ -230,7 +230,7 @@ const UserProfile = () => {
                 </div>
               ) : (
                 <p className="px-6 py-3 text-ellipsis">
-                  {userData.aboutMe || "Add something about yourself"}
+                  {userData?.aboutMe || "Add something about yourself"}
                 </p>
               )}
             </div>

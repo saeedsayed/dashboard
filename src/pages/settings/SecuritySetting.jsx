@@ -54,25 +54,29 @@ const SecuritySetting = () => {
     }
 
     setLoading(true);
+    const email = adminUser.email;
     try {
-      const storageRef = ref(storage, `userAvatars/${adminUser.email} avatar`);
-      await deleteDoc(useUsersDocRef(adminUser.email));
-      await deleteObject(storageRef);
+      const storageRef = ref(storage, `userAvatars/${email} avatar`);
       await deleteUser(adminUser);
+      console.log("account has ben deleted");
+      await deleteDoc(useUsersDocRef(email));
+      console.log("doc has ben deleted");
+      await deleteObject(storageRef);
+      console.log("storage has ben deleted");
       setSnackbar({
         isOpen: true,
         message: "Account deleted successfully",
         type: "success",
       });
-      setConfirmDeleteEmail("");
     } catch (err) {
       console.log(err.message);
       setSnackbar({
         isOpen: true,
-        message: "Account not deleted",
+        message: "Account not deleted. Please log in again and try again",
         type: "error",
       });
     } finally {
+      setConfirmDeleteEmail("");
       setLoading(false);
       setModalIsOpen((p) => ({ ...p, deleteAccount: false }));
     }
@@ -105,12 +109,11 @@ const SecuritySetting = () => {
     return <FullScreenLoading />;
   }
 
-
   return (
     <>
-      <div className="flex gap-4 flex-wrap items-start mt-8">
+      <div className="flex gap-4 flex-wrap md:flex-row flex-col items-start mt-8">
         {/* left col  */}
-        <div className="flex flex-col gap-4 flex-1 min-w-96">
+        <div className="flex-1 w-full md:min-w-[400px]">
           <CardBody>
             <h3 className="bg-main-bg px-4 py-2 md:text-3xl text-xl mb-2 font-bold">
               Change Password
@@ -142,7 +145,7 @@ const SecuritySetting = () => {
           </CardBody>
         </div>
         {/* right col */}
-        <div className="min-w-96 md:max-w-sm flex-1 md:flex-none border-red-600 border rounded-radius">
+        <div className="md:max-w-sm border-red-600 border rounded-radius">
           <CardBody>
             <h3 className="bg-main-bg px-4 py-2 md:text-3xl text-xl mb-2 font-bold text-red-700">
               Delete Account

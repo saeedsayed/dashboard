@@ -11,27 +11,27 @@ const Input = ({ label, id, validRef, type, err, errMes, social, ...rest }) => {
       >
         {label} <span className="text-red-700 font-bold">{errMes}</span>
       </label>
-      <input
-        className={`border-2 relative focus:border-primary  bg-section-bg border-secondary focus:outline-none
-           text-primary-text rounded-md  py-2 px-3 w-full ${
-             !!err && "!border-red-500"
-           }`}
-        id={id}
-        type={isShow ? "text" : type}
-        {...rest}
-        {...validRef}
-      />
-      {type == "password" && (
-        <button
-          onClick={(_) => setIsShow((p) => !p)}
-          type="button"
-          className={`absolute right-3 top-1/2 p-2 ${
-            !label ? "-translate-y-1/2" : ""
+      <div className="relative">
+        <input
+          className={`border-2 relative focus:border-primary  bg-section-bg border-secondary focus:outline-none
+          text-primary-text rounded-md  py-2 px-3 w-full ${
+            !!err && "!border-red-500"
           }`}
-        >
-          {isShow ? <FiEye /> : <FiEyeOff />}
-        </button>
-      )}
+          id={id}
+          type={isShow ? "text" : type}
+          {...rest}
+          {...validRef}
+        />
+        {type == "password" && (
+          <button
+            onClick={(_) => setIsShow((p) => !p)}
+            type="button"
+            className={`absolute right-3 top-1/2 p-2 -translate-y-1/2`}
+          >
+            {isShow ? <FiEye /> : <FiEyeOff />}
+          </button>
+        )}
+      </div>
     </div>
   );
 };

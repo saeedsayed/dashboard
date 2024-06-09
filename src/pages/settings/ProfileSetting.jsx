@@ -210,8 +210,8 @@ const ProfileSetting = () => {
               Account Details
             </h3>
             <form onSubmit={handleSubmit(submitProfileSetting)}>
-              <div className="flex md:gap-4 flex-wrap">
-                <div className="w-[calc(100%/2-16px)] flex-1 md:flex-auto min-w-[280px]">
+              <div className="flex gap-4 flex-wrap flex-col sm:flex-row">
+                <div className="sm:w-[calc((100%-16px)/2)] w-full">
                   <Input
                     id={"firstName"}
                     label={"first name"}
@@ -221,7 +221,7 @@ const ProfileSetting = () => {
                     validRef={{ ...register("firstName") }}
                   />
                 </div>
-                <div className="w-[calc(100%/2-16px)] flex-1 md:flex-auto min-w-[280px]">
+                <div className="sm:w-[calc((100%-16px)/2)] w-full">
                   <Input
                     id={"lastName"}
                     label={"last name"}
@@ -231,7 +231,7 @@ const ProfileSetting = () => {
                     validRef={{ ...register("lastName") }}
                   />
                 </div>
-                <div className="w-[calc(100%/2-16px)] flex-1 md:flex-auto min-w-[280px]">
+                <div className="sm:w-[calc((100%-16px)/2)] w-full">
                   <Input
                     type={"email"}
                     label={"Email address"}
@@ -243,7 +243,7 @@ const ProfileSetting = () => {
                     validRef={{ ...register("email") }}
                   />
                 </div>
-                <div className="w-[calc(100%/2-16px)] flex-1 md:flex-auto min-w-[280px]">
+                <div className="sm:w-[calc((100%-16px)/2)] w-full">
                   <Input
                     id={"phoneNumber"}
                     type={"number"}
@@ -254,7 +254,7 @@ const ProfileSetting = () => {
                     validRef={{ ...register("phoneNumber") }}
                   />
                 </div>
-                <div className="w-[calc(100%/2-16px)] flex-1 md:flex-auto min-w-[280px]">
+                <div className="sm:w-[calc((100%-16px)/2)] w-full">
                   <Input
                     id={"address"}
                     label={"Address"}
@@ -264,7 +264,7 @@ const ProfileSetting = () => {
                     validRef={{ ...register("address") }}
                   />
                 </div>
-                <div className="w-[calc(100%/2-16px)] flex-1 md:flex-auto min-w-[280px]">
+                <div className="sm:w-[calc((100%-16px)/2)] w-full">
                   <Input
                     id={"birthday"}
                     type={"date"}

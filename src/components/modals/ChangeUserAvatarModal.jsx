@@ -18,6 +18,7 @@ const ChangeUserAvatarModal = ({ isOpen, handleClose, isUploadingAvatar }) => {
 
   const handleUpdateAvatar = async (_) => {
     isUploadingAvatar(true);
+    handleClose();
     try {
       const storageRef = ref(storage, `userAvatars/${adminUser.email} avatar`);
       await uploadBytesResumable(storageRef, newAvatar);
@@ -40,7 +41,6 @@ const ChangeUserAvatarModal = ({ isOpen, handleClose, isUploadingAvatar }) => {
         type: "",
       });
     } finally {
-      handleClose();
       isUploadingAvatar(false);
     }
   };
