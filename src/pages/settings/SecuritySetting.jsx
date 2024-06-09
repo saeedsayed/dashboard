@@ -110,7 +110,7 @@ const SecuritySetting = () => {
     <>
       <div className="flex gap-4 flex-wrap items-start mt-8">
         {/* left col  */}
-        <div className="flex flex-col gap-4 flex-1 md:min-w-[400px]">
+        <div className="flex flex-col gap-4 flex-1 min-w-96">
           <CardBody>
             <h3 className="bg-main-bg px-4 py-2 md:text-3xl text-xl mb-2 font-bold">
               Change Password
@@ -142,7 +142,7 @@ const SecuritySetting = () => {
           </CardBody>
         </div>
         {/* right col */}
-        <div className="md:min-w-96 md:max-w-sm flex-1 md:flex-none border-red-600 border rounded-radius">
+        <div className="min-w-96 md:max-w-sm flex-1 md:flex-none border-red-600 border rounded-radius">
           <CardBody>
             <h3 className="bg-main-bg px-4 py-2 md:text-3xl text-xl mb-2 font-bold text-red-700">
               Delete Account
